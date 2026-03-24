@@ -9,6 +9,7 @@ import math
 import shutil
 from pathlib import Path
 from typing import Optional, Tuple, Dict
+from urllib.parse import quote
 
 import numpy as np
 import pandas as pd
@@ -62,10 +63,15 @@ def pct_change(a, b):
         return np.nan
     return (b - a) / a * 100
 
+def build_raw_url(*parts: str) -> str:
+    encoded = "/".join(quote(str(p), safe="") for p in parts)
+    return f"https://raw.githubusercontent.com/{encoded}"
+
 def infer_repo_raw(repo_raw_base: Optional[str], filename: str) -> Optional[str]:
     if not repo_raw_base:
         return None
-    return repo_raw_base.rstrip("/") + "/" + filename
+    base = repo_raw_base.rstrip("/")
+    return f"{base}/{quote(str(filename), safe='')}"
 
 def read_csv_flex(path_or_url: str, **kwargs) -> pd.DataFrame:
     encodings = ["utf-8-sig", "utf-8", "cp949", "euc-kr"]
@@ -151,6 +157,7 @@ def savefig(outdir: str, name: str):
     path = os.path.join(outdir, name)
     plt.savefig(path, dpi=300, bbox_inches="tight")
     plt.show()
+    plt.close()
     print("saved:", path)
 
 def draw_policy_line():
