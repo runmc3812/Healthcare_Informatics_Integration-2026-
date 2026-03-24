@@ -130,5 +130,4 @@ Cell 13 5-Fold 교차검증 + 최종 요약
 - 전자담배 여부, 흡연량, 흡연 기간 등 추가 변수 없음
 
 ---
-
-*학부 수업 과제 | 데이터 출처: Kaggle playground-series-s3e24*
+데이터 출처: Kaggle playground-series-s3e24*
