@@ -1,6 +1,6 @@
 # 🚭 바이오마커 기반 흡연 여부 예측 모델
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/YOUR_REPO/blob/main/smoker_biosignal_analysis.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/runmc3812/Healthcare_Informatics_Integration-2026-/4조/blob/main/smoker_biosignal_analysis.ipynb)
 [![Kaggle](https://img.shields.io/badge/Data-Kaggle-20BEFF?logo=kaggle)](https://www.kaggle.com/competitions/playground-series-s3e24)
 
 > 혈액·신체 검사 수치(바이오마커)만으로 흡연 여부를 예측하고,  
