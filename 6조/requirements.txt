@@ -1,0 +1,7 @@
+pandas
+plotly
+statsmodels
+scipy
+kaleido
+openpyxl
+requests
