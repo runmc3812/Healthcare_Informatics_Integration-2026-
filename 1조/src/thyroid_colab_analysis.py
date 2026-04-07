@@ -398,7 +398,7 @@ def run_analysis(
     savefig(outdir, "figure08_heatmap_female.png")
 
     # Figure 9
-    wf1 = age_change_total.copy().sort_values("2012→2015 변화율(%)")
+    wf1 = age_change_total[age_change_total["연령군"] != "계"].copy().sort_values("연령군")
     plt.figure(figsize=(11, 6))
     plt.bar(wf1["연령군"], wf1["2012→2015 변화율(%)"])
     plt.xticks(rotation=45)
@@ -408,7 +408,7 @@ def run_analysis(
     savefig(outdir, "figure09_waterfall_drop_total_2012_2015.png")
 
     # Figure 10
-    wf2 = age_change_total.copy().sort_values("2015→2023 변화율(%)", ascending=False)
+    wf2 = age_change_total[age_change_total["연령군"] != "계"].copy().sort_values("연령군")
     plt.figure(figsize=(11, 6))
     plt.bar(wf2["연령군"], wf2["2015→2023 변화율(%)"])
     plt.xticks(rotation=45)
@@ -417,8 +417,9 @@ def run_analysis(
     plt.ylabel("변화율 (%)")
     savefig(outdir, "figure10_waterfall_rebound_total_2015_2023.png")
 
+    
     # Figure 11
-    wf3 = age_change_female.copy().sort_values("2012→2015 변화율(%)")
+    wf3 = age_change_female[age_change_female["연령군"] != "계"].copy().sort_values("연령군")
     plt.figure(figsize=(11, 6))
     plt.bar(wf3["연령군"], wf3["2012→2015 변화율(%)"])
     plt.xticks(rotation=45)
@@ -499,7 +500,7 @@ def run_analysis(
         plt.figure(figsize=(10, 5))
         plt.plot(fit_df["발생연도"], fit_df["연령표준화발생률"], marker="o", linewidth=2, label="관측값")
         plt.plot(fit_df["발생연도"], fit_df["fitted"], linewidth=2, label="ITS 적합선")
-        plt.plot(fit_df["발생연도"], fit_df["counterfactual"], linestyle="--", linewidth=2, label="반사실")
+        plt.plot(fit_df["발생연도"], fit_df["counterfactual"], linestyle="--", linewidth=2, label="예상 기대선")
         draw_policy_line()
         plt.title(f"ITS: 갑상선암 연령표준화발생률 ({label})")
         plt.xlabel("연도")
