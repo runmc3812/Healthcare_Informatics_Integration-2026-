@@ -135,6 +135,18 @@ def load_age_sex_incidence(source: str) -> pd.DataFrame:
     long_df = long_df.rename(columns={"cases": "발생자수", "rate": "조발생률"})
     long_df["연령중앙값"] = long_df["연령군"].apply(age_midpoint)
     long_df = long_df[long_df["암종"].astype(str).str.contains("갑상선", na=False)].copy()
+    
+    # --- [수정] 0-4세 제외 및 연령군 순서 강제 고정 ---
+    long_df = long_df[long_df["연령군"] != "0-4세"]
+    age_order = [
+        '계', '5-9세', '10-14세', '15-19세', '20-24세', '25-29세', 
+        '30-34세', '35-39세', '40-44세', '45-49세', '50-54세', 
+        '55-59세', '60-64세', '65-69세', '70-74세', '75-79세', 
+        '80-84세', '85세이상'
+    ]
+    long_df["연령군"] = pd.Categorical(long_df["연령군"], categories=age_order, ordered=True)
+    # ---------------------------------------------------
+    
     long_df = long_df.sort_values(["성별", "연령군", "연도"]).reset_index(drop=True)
     return long_df
 
