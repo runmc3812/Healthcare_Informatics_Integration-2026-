@@ -1,0 +1,321 @@
+/*
+  [style.css] - 디자인(꾸미기)을 담당하는 파일
+  CSS는 웹페이지를 '예쁘게' 만듭니다.
+  색깔, 크기, 위치, 폰트 등을 여기에서 설정해요.
+*/
+
+
+/* ─────────────────────────────────────────
+   기본 설정
+   모든 요소에 공통으로 적용되는 기초 스타일
+───────────────────────────────────────── */
+
+/* 모든 태그의 기본 여백을 없애고 박스 크기를 일관되게 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 전체 페이지 스타일 */
+body {
+  /* 폰트: 구글에서 불러온 한글 폰트 */
+  font-family: 'Noto Sans KR', sans-serif;
+
+  /* 배경: 하늘색 → 민트색으로 이어지는 그라디언트 */
+  background: linear-gradient(160deg, #c8e6ff 0%, #b8f0df 60%, #d4f5c4 100%);
+
+  /* 화면 최소 높이를 뷰포트(화면) 전체로 */
+  min-height: 100vh;
+
+  /* 내용을 세로로 가운데 정렬 */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  /* 위아래/좌우 여백 */
+  padding: 32px 16px 52px;
+
+  /* 기본 글자 색 */
+  color: #1e3a4a;
+}
+
+
+/* ─────────────────────────────────────────
+   컨테이너 (전체 앱을 감싸는 박스)
+───────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 460px;   /* 너무 넓어지지 않도록 최대 너비 제한 */
+  display: flex;
+  flex-direction: column;  /* 안의 요소들을 위→아래로 쌓기 */
+  gap: 20px;               /* 요소 간 간격 */
+}
+
+
+/* ─────────────────────────────────────────
+   ① 제목 영역 (header)
+───────────────────────────────────────── */
+header {
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* 큰 이모지 아이콘 */
+.emoji-big {
+  font-size: 52px;
+  display: block;
+  margin-bottom: 10px;
+  /* 위아래로 떠다니는 애니메이션 (아래에서 정의) */
+  animation: float 3s ease-in-out infinite;
+}
+
+/* 앱 제목 */
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+  /* 그라디언트 색상 텍스트 */
+  background: linear-gradient(135deg, #1a7fb5, #18b87a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 부제목 */
+.subtitle {
+  font-size: 14px;
+  color: #5a9aaf;
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+
+/* ─────────────────────────────────────────
+   카드 공통 스타일
+   흰 배경 + 둥근 모서리 + 그림자 = 카드 느낌
+───────────────────────────────────────── */
+.card {
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 6px 24px rgba(30, 120, 180, 0.13);
+}
+
+
+/* ─────────────────────────────────────────
+   ② 완료 횟수 카드
+───────────────────────────────────────── */
+.count-card {
+  /* 가로로 나란히 정렬 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  /* 파랑 → 초록 그라디언트 배경 */
+  background: linear-gradient(135deg, #20a0cc, #22c47a);
+  color: white;
+  padding: 18px 24px;
+}
+
+/* "오늘 완료한 미션" / "회" 텍스트 */
+.count-label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* 완료 횟수 숫자 */
+.count-num {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+  /* 숫자가 바뀔 때 부드럽게 크기 변하는 효과 */
+  transition: transform 0.2s ease;
+}
+
+/* JavaScript에서 .bump 클래스를 잠깐 붙였다 떼어서
+   숫자가 커졌다가 돌아오는 효과를 줍니다 */
+.count-num.bump {
+  transform: scale(1.4);
+}
+
+
+/* ─────────────────────────────────────────
+   ③ 미션 카드
+───────────────────────────────────────── */
+.mission-card {
+  min-height: 200px;   /* 카드 최소 높이 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 28px;
+
+  /* 왼쪽에 초록 굵은 선 강조 */
+  border-left: 6px solid #22c47a;
+
+  /* 연한 민트+하늘 배경 */
+  background: linear-gradient(135deg, #f0fdf8, #eaf7ff);
+}
+
+/* 미션 받기 전 안내 영역 */
+#before {
+  text-align: center;
+}
+
+/* 안내 아이콘 */
+.mission-icon {
+  font-size: 44px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+/* 안내 문구 */
+.guide-text {
+  font-size: 15px;
+  color: #90bfcc;
+  font-weight: 600;
+}
+
+/* 미션 받은 후 내용 영역 */
+#after {
+  text-align: center;
+  width: 100%;
+}
+
+/* 미션 번호 뱃지 (예: MISSION 3) */
+.mission-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #20a0cc, #22c47a);
+  padding: 4px 16px;
+  border-radius: 999px;  /* 완전히 둥근 캡슐 모양 */
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+
+/* 실제 미션 텍스트 */
+.mission-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a3e52;
+  line-height: 1.6;
+  /* 미션이 나타날 때 아래에서 올라오는 애니메이션 */
+  animation: fadeUp 0.4s ease;
+}
+
+
+/* ─────────────────────────────────────────
+   ④ 버튼 영역
+───────────────────────────────────────── */
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 버튼 공통 스타일 */
+.btn {
+  width: 100%;
+  padding: 20px;
+  border: none;
+  border-radius: 999px;  /* 완전히 둥근 pill 버튼 */
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;       /* 마우스를 올리면 손가락 모양 커서 */
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+/* 버튼을 클릭했을 때 살짝 눌리는 효과 */
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* 파란 버튼 (새 미션 받기) */
+.btn-blue {
+  background: linear-gradient(135deg, #1a90c8, #1568d0);
+  color: white;
+  box-shadow: 0 6px 20px rgba(26, 144, 200, 0.4);
+}
+
+.btn-blue:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(26, 144, 200, 0.5);
+}
+
+/* 초록 버튼 (미션 완료) */
+.btn-green {
+  background: linear-gradient(135deg, #22c47a, #18a864);
+  color: white;
+  box-shadow: 0 6px 20px rgba(34, 196, 122, 0.4);
+}
+
+.btn-green:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(34, 196, 122, 0.5);
+}
+
+
+/* ─────────────────────────────────────────
+   ⑤ 하단 안내 문구 (footer)
+───────────────────────────────────────── */
+footer {
+  text-align: center;
+}
+
+.disclaimer {
+  font-size: 12px;
+  color: #80aabb;
+}
+
+
+/* ─────────────────────────────────────────
+   유틸리티 클래스
+───────────────────────────────────────── */
+
+/*
+  .hidden 클래스: 요소를 완전히 숨깁니다.
+  JavaScript에서 classList.add('hidden') / remove('hidden')으로
+  요소를 보이게 하거나 숨깁니다.
+*/
+.hidden {
+  display: none !important;
+}
+
+
+/* ─────────────────────────────────────────
+   애니메이션 정의
+───────────────────────────────────────── */
+
+/* 미션 텍스트가 아래에서 올라오며 나타나는 효과 */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 아이콘이 위아래로 떠다니는 효과 */
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+
+/* ─────────────────────────────────────────
+   반응형 디자인 (작은 화면 대응)
+   화면이 360px 이하일 때 글자/버튼 크기를 줄임
+───────────────────────────────────────── */
+@media (max-width: 360px) {
+  h1            { font-size: 22px; }
+  .mission-text { font-size: 19px; }
+  .btn          { font-size: 16px; padding: 17px; }
+  .count-num    { font-size: 34px; }
+}
